@@ -1,0 +1,26 @@
+{
+  "name": "map675_mod-02_task-02",
+  "version": "1.0.0",
+  "description": "Map675 Module-02 Task-02, Mapping with Node.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build-scripts/processData.js && live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EFSA223/Map675_Mod-02_Task-02.git"
+  },
+  "author": "Etienne Sambo, EFSA223",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "csv-parse": "^4.6.5",
+    "csv2geojson": "^5.1.1",
+    "mapshaper": "^0.4.140"
+  },
+  "bugs": {
+    "url": "https://github.com/EFSA223/Map675_Mod-02_Task-02/issues"
+  },
+  "homepage": "https://github.com/EFSA223/Map675_Mod-02_Task-02#readme"
+}
