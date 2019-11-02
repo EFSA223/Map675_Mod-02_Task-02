@@ -105,3 +105,15 @@ _$ git commit -m "Install npm project"_
 [master df2bd5a] Install npm project
  2 files changed, 102 insertions(+)
  create mode 100644 package.json
+
+ e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+ $ git push
+ Enumerating objects: 9, done.
+ Counting objects: 100% (9/9), done.
+ Delta compression using up to 8 threads
+ Compressing objects: 100% (7/7), done.
+ Writing objects: 100% (7/7), 2.27 KiB | 1.13 MiB/s, done.
+ Total 7 (delta 1), reused 0 (delta 0)
+ remote: Resolving deltas: 100% (1/1), done.
+ To https://github.com/EFSA223/Map675_Mod-02_Task-02.git
+    6a2f175..ba0f11a  master -> master
