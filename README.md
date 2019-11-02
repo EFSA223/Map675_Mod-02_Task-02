@@ -76,3 +76,32 @@ Is this OK? (yes)
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
 $
+
+_$ git status_
+>On branch master
+Your branch is up to date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        package.json
+no changes added to commit (use "git add" and/or "git commit -a")
+
+_$ git add ._
+>warning: LF will be replaced by CRLF in package.json.
+The file will have its original line endings in your working directory
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        new file:   package.json
+
+>e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+_$ git commit -m "Install npm project"_
+[master df2bd5a] Install npm project
+ 2 files changed, 102 insertions(+)
+ create mode 100644 package.json
