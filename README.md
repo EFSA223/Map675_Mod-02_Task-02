@@ -2,39 +2,50 @@
 Map675 Module-02 Task-02, Mapping with Node.
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ git status_
 
-On branch master
+>On branch master
 Your branch is up to date with 'origin/master'.
 nothing to commit, working tree clean
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ git log_
-commit 6a2f175273175d7c83a8f5c89cb8db8e07bc34e4 (HEAD -> master, origin/master, origin/HEAD)
+
+>commit 6a2f175273175d7c83a8f5c89cb8db8e07bc34e4 (HEAD -> master, origin/master, origin/HEAD)
 Author: Etienne <efsa223@uky.edu>
 Date:   Sat Nov 2 09:25:19 2019 -0400
-
     Initial commit
-
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ git remote -v_
+
 origin  https://github.com/EFSA223/Map675_Mod-02_Task-02.git (fetch)
 origin  https://github.com/EFSA223/Map675_Mod-02_Task-02.git (push)
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ pwd_
+
 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ node -v_
+
 v12.13.0
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
-_$ npm -v_
-6.12.0
 
-e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+_$ npm -v_
+
+>6.12.0
+
+>e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ npm init_
+
 >This utility will walk you through creating a package.json file.
 It only covers the most common items, and tries to guess sensible defaults.
 See `npm help json` for definitive documentation on these fields
@@ -78,6 +89,7 @@ Is this OK? (yes)
 $
 
 _$ git status_
+
 >On branch master
 Your branch is up to date with 'origin/master'.
 Changes not staged for commit:
@@ -90,6 +102,7 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 
 _$ git add ._
+
 >warning: LF will be replaced by CRLF in package.json.
 The file will have its original line endings in your working directory
 $ git status
@@ -101,11 +114,12 @@ Changes to be committed:
         new file:   package.json
 
 >e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
+
 _$ git commit -m "Install npm project"_
-[master df2bd5a] Install npm project
+
+>[master df2bd5a] Install npm project
  2 files changed, 102 insertions(+)
  create mode 100644 package.json
-
  e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02 (master)
  $ git push
  Enumerating objects: 9, done.
