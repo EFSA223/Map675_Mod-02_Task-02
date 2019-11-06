@@ -119,3 +119,22 @@ Incase we have to convert shp file to json, we can use mapshaper command line or
 }
 Is this OK? (yes) yes
 ```
+>copy dependencies in package.json.
+
+```
+"dependencies": {
+  "chalk": "^2.4.2",
+  "csv-parse": "^4.6.5",
+  "csv2geojson": "^5.1.1",
+  "mapshaper": "^0.4.140"
+}
+```
+>$ npm install
+
+```
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN part-01@1.0.0 No repository field.
+
+added 69 packages from 112 contributors and audited 101 packages in 5.69s
+found 0 vulnerabilities
+```
