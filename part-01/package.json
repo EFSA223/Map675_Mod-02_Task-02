@@ -1,0 +1,17 @@
+{
+  "name": "part-01",
+  "version": "1.0.0",
+  "description": "1. Initialize new Git repository on personal GitHub account WITH README, add .gitignore and chose \"Node\", clone down to local machine.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  "chalk": "^2.4.2",
+  "csv-parse": "^4.6.5",
+  "csv2geojson": "^5.1.1",
+  "mapshaper": "^0.4.140"
+}
+}
