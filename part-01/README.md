@@ -138,3 +138,147 @@ npm WARN part-01@1.0.0 No repository field.
 added 69 packages from 112 contributors and audited 101 packages in 5.69s
 found 0 vulnerabilities
 ```
+>$ git status
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   package.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        package-lock.json
+```
+>git add .
+>$ git status
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .gitignore
+        modified:   README.md
+        new file:   package-lock.json
+        modified:   package.json
+```
+>$ git commit -m "Add gitignore and install npm environment"
+
+```
+[master 400ba93] Add gitignore and install npm environment
+ 4 files changed, 532 insertions(+), 5 deletions(-)
+ create mode 100644 part-01/.gitignore
+ create mode 100644 part-01/package-lock.json
+```
+>$ git status
+
+```
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+```
+>$ git push
+
+```
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 6.73 KiB | 3.37 MiB/s, done.
+Total 7 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/EFSA223/Map675_Mod-02_Task-02.git
+   036b351..400ba93  master -> master
+```
+>$ git status
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+5. Reading, parsing, and writing JSON system files with Node
+
+>$ mkdir scripts<br>
+$ cd scripts/<br>
+$ ls -l<br>
+$ touch fs-async.js<br>
+$ node fs-async.js<br>
+
+```
+data loaded!
+object extracted:  {
+  Vivid: {
+    '2': [ '#E58606', '#5D69B1', '#A5AA99' ],
+    '3': [ '#E58606', '#5D69B1', '#52BCA3', '#A5AA99' ],
+    '4': [ '#E58606', '#5D69B1', '#52BCA3', '#99C945', '#A5AA99' ],
+    '5': [
+      '#E58606',
+      '#5D69B1',
+      '#52BCA3',
+      '#99C945',
+      '#CC61B0',
+      '#A5AA99'
+    ],
+    :
+    :
+```
+
+6. Reading and writing JSON files using fs.readFile
+7. Parsing and processing CSV data in Node with "csv2geojson"
+
+```
+e.sambo@KADICT004 MINGW64 /c/NewMapPlus/Map675/Map675_Mod-02_Task-02/part-01/scripts (master)
+```
+
+>$ touch csv2geojson.js  "write script!"<br>
+>$ node csv2geojson.js
+
+```{
+  type: 'FeatureCollection',
+  features: [
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    :
+    :
+    { type: 'Feature', properties: [Object], geometry: [Object] },
+    ... 20105 more items
+]
+}
+done writing file
+```
+>Test and validity the geojson file, is to upload it to http://geojson.io/.
+
+![A CSV file converted to GeoJSON, displayed in geojson.io](images/csv2geojson.jpg)
+
+8. Modifying script to remove unwanted Fields.
+
+>$ touch csv2geojson-filtered.js  "write script!"<br>
+>$ node csv2geojson-filtered.js
+
+9. binding CSV data to GeoJSON with Node.
+
+>$ touch bind-data.js  "write script!"<br>
+>$ node bind-data.js
+
+File all done. Great success!
+
+10. Add and commit and push all changes to remote repository
