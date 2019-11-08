@@ -1,0 +1,233 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Airbnb housing Amsterdam</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+
+  <!-- <title>Austin Traffic Districts</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> -->
+  <link rel="stylesheet" href="libs/Leaflet.markercluster/MarkerCluster.Default.css"> />
+  <link rel="stylesheet" href="libs/Leaflet.markercluster/MarkerCluster.css"> />
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+    }
+
+    #ui {
+        position: absolute;
+        z-index: 1000; /* place above map */
+        bottom: 18px;
+        right: 18px;
+        padding: 6px 12px;
+        background: rgba(256,256,256,.9);
+    }
+
+    #ui ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    #ui li {
+        margin-bottom: 6px;
+    }
+    #ui a {
+        text-decoration: none;
+    }
+    #ui a:hover {
+        font-weight: bold;
+    }
+    .highlight {
+        font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="map"></div>
+
+  <div id="ui">
+      <h3>Austin City Districts</h3>
+      <h4>(number of traffic signals)</h4>
+      <ul id="legend-list"></ul>
+  </div>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script> -->
+  <script src="libs/Leaflet.markercluster/leaflet.markercluster.js"></script>
+
+  <script>
+    const options = {
+      //center: [30.30927, -97.74211],
+      center: [52.36, 4.91],
+      zoom: 12
+    }
+
+    const map = L.map('map', options);
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+    }).addTo(map);
+
+    // use D3 fetch to request data with async requests
+    const neighbourhoodsData = d3.json('data/neighbourhoods-counts.json');
+    const colorsData = d3.json('data/vividcolors.json');
+    const adam_listingsData = d3.json('data/adam_listings.json');
+
+    // use Promise to wait until data is all loaded
+    Promise.all([neighbourhoodsData, colorsData, adam_listingsData]).then(dataReady);
+
+
+
+    function dataReady(data) {
+      // function is called when Promise is fulfilled and data is ready
+
+      // inspect array of data
+      console.log(data);
+
+      // pull out separate data arrays and assign to variables
+      const neighbourhood = data[0];
+      const colors = data[1];
+      const listings = data[2];
+
+      // store a reference to the HTML list
+      const legendList = $('#legend-list');
+
+      // loop through the features and create a new
+      // list item for each feature in the legend
+      for(let i = 1; i <= neighbourhood.features.length; i++) {
+          legendList.append('<li class="legend-item" id="neighbourhood-' + i + '"><a style="color:' + colors.Vivid[10][i -1] + '" href="#">neighbourhood ' + i + ' (<span></span>)</a></li>');
+      }
+
+      // convert GeoJSON to Leaflet L.geoJson() object and add to the map
+      //L.geoJson(districts).addTo(map);
+
+      // create a layerGroup with the geojson data
+      var neighbourhoodsLayerGroup = L.geoJson(neighbourhood, {
+        style: function (feature) {
+          // use the colors object to style
+          // each polygon a unique color
+          return {
+            color: colors.Vivid[10][feature.properties.neighbourh_id - 1],
+            fillOpacity: .6
+          }
+        },
+        onEachFeature(feature, layer) {
+          // select each legend list item span and append the total count of signals
+          $('#neighbourhood-' + feature.properties.neighbourh_id + ' span').append(feature.properties.count);
+
+          //when mousing over a polygon layer
+          layer.on('mouseover', function () {
+            // provide a visual affordance
+            this.setStyle({
+              fillOpacity: .8
+            });
+            // select the cooresponding list item
+            // and add the highlight class to make bold
+            $('#neighbourhood-' + feature.properties.neighbourh_id).addClass('highlight');
+          });
+
+          // when mousing out
+          layer.on('mouseout', function() {
+             // reset back to our base styling opacity
+             this.setStyle({
+                fillOpacity: .6
+             });
+             // remove the class highlight from the legend list item
+             $('#neighbourhood-' + feature.properties.neighbourh_id).removeClass('highlight');
+          });
+
+          //  function onEachFeature(feature, layer) {
+        	layer.on({
+        		  click: zoomToFeature
+        	});
+
+
+        }
+      }).addTo(map);
+
+// L.geoJson(signals).addTo(map);
+        // create new markerClusterGroup
+        var markers = L.markerClusterGroup();
+
+        // loop through all our signals features
+        listings.features.forEach(function(feature) {
+          // create a new Leaflet marker for each
+          var coords = feature.geometry.coordinates,
+              marker = L.marker([coords[1], coords[0]]);
+          // bind a tooltip to the marker
+          marker.bindTooltip("listings ID: " + feature.properties.neighbourh_id);
+          // add the marker to the markerClusterGroup
+          markers.addLayer(marker);
+
+        });
+        // add the markerClusterGroup to the map
+        map.addLayer(markers);
+
+        // select all the list items and on mouseover
+        $('.legend-item').on('mouseover', function() {
+            // extract the specific number from the specific item
+            // being moused over
+            var num = this.id.replace('neighbourhood-', '');
+            // send this number as an argument to the highlightDistrict function
+            highlightNeighbourhood(neighbourhoodsnum);
+            //console.log(num);
+            //console.log(this);
+        });
+      // select all the list items and on mouseover
+      // $('.legend-item').on('mouseover', function() {
+      //     // extract the specific number from the specific item
+      //     // being moused over
+      //     var num = this.id.replace('neighbourhoods-', '');
+      //     // send this number as an argument to the highlightDistrict function
+      //     highlightNeighbourhood(num);
+      // });
+
+      function highlightNeighbourhood(neighbourhoodsNum) {
+          // loop through the districts polygons
+          neighbourhoodsLayerGroup.eachLayer(function(layer) {
+              // if the district id matches the one we're mousing over
+              if(layer.feature.properties.neighbourh_id === neighbourhoodsNum) {
+                  // change the layer style
+                  layer.setStyle({
+                      fillOpacity: .8
+                  }).bringToFront();
+              } else {
+                  // return to original
+                  layer.setStyle({
+                      fillOpacity: .6
+                  });
+              }
+          });
+      }
+
+      function zoomToFeature(e) {
+      	map.fitBounds(e.target.getBounds());
+      }
+
+    }
+  </script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+
+</body>
+
+</html>
