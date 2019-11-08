@@ -8,8 +8,6 @@
   <title>Airbnb housing Amsterdam</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
 
-  <!-- <title>Austin Traffic Districts</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> -->
   <link rel="stylesheet" href="libs/Leaflet.markercluster/MarkerCluster.Default.css"> />
   <link rel="stylesheet" href="libs/Leaflet.markercluster/MarkerCluster.css"> />
 
@@ -61,22 +59,18 @@
   <div id="map"></div>
 
   <div id="ui">
-      <h3>Austin City Districts</h3>
-      <h4>(number of traffic signals)</h4>
+      <h3>Airbnb Housing Amsterdam</h3>
+      <h4>(Airbnb per neighbourhood)</h4>
       <ul id="legend-list"></ul>
   </div>
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
-
-  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <!-- <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script> -->
   <script src="libs/Leaflet.markercluster/leaflet.markercluster.js"></script>
 
   <script>
     const options = {
-      //center: [30.30927, -97.74211],
       center: [52.36, 4.91],
       zoom: 12
     }
@@ -95,8 +89,6 @@
 
     // use Promise to wait until data is all loaded
     Promise.all([neighbourhoodsData, colorsData, adam_listingsData]).then(dataReady);
-
-
 
     function dataReady(data) {
       // function is called when Promise is fulfilled and data is ready
@@ -160,12 +152,9 @@
         	layer.on({
         		  click: zoomToFeature
         	});
-
-
         }
       }).addTo(map);
 
-// L.geoJson(signals).addTo(map);
         // create new markerClusterGroup
         var markers = L.markerClusterGroup();
 
@@ -182,31 +171,26 @@
         });
         // add the markerClusterGroup to the map
         map.addLayer(markers);
-
+//===
         // select all the list items and on mouseover
         $('.legend-item').on('mouseover', function() {
             // extract the specific number from the specific item
             // being moused over
-            var num = this.id.replace('neighbourhood-', '');
+            var num = this.id.replace('neighbourhoods-', '');
             // send this number as an argument to the highlightDistrict function
-            highlightNeighbourhood(neighbourhoodsnum);
+            highlightNeighbourhood(num);
             //console.log(num);
             //console.log(this);
         });
-      // select all the list items and on mouseover
-      // $('.legend-item').on('mouseover', function() {
-      //     // extract the specific number from the specific item
-      //     // being moused over
-      //     var num = this.id.replace('neighbourhoods-', '');
-      //     // send this number as an argument to the highlightDistrict function
-      //     highlightNeighbourhood(num);
-      // });
 
       function highlightNeighbourhood(neighbourhoodsNum) {
-          // loop through the districts polygons
+          // loop through the neighbourhood polygons
           neighbourhoodsLayerGroup.eachLayer(function(layer) {
-              // if the district id matches the one we're mousing over
+              // if the neighbourhood id matches the one we're mousing over
+  //console.log(neighbourhoodsNum);
+  //console.log(layer.feature.properties.neighbourh_id);
               if(layer.feature.properties.neighbourh_id === neighbourhoodsNum) {
+
                   // change the layer style
                   layer.setStyle({
                       fillOpacity: .8
@@ -226,7 +210,6 @@
 
     }
   </script>
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
 </body>
 
