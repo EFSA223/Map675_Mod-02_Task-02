@@ -176,26 +176,22 @@
         $('.legend-item').on('mouseover', function() {
             // extract the specific number from the specific item
             // being moused over
-            var num = this.id.replace('neighbourhoods-', '');
+            var num = this.id.replace('neighbourhood-', '');
             // send this number as an argument to the highlightDistrict function
             highlightNeighbourhood(num);
-            //console.log(num);
-            //console.log(this);
         });
 
       function highlightNeighbourhood(neighbourhoodsNum) {
           // loop through the neighbourhood polygons
           neighbourhoodsLayerGroup.eachLayer(function(layer) {
               // if the neighbourhood id matches the one we're mousing over
-  //console.log(neighbourhoodsNum);
-  //console.log(layer.feature.properties.neighbourh_id);
-              if(layer.feature.properties.neighbourh_id === neighbourhoodsNum) {
-
+              if(layer.feature.properties.neighbourh_id.toString() === neighbourhoodsNum) {
                   // change the layer style
                   layer.setStyle({
                       fillOpacity: .8
                   }).bringToFront();
               } else {
+                //console.log(neighbourhoodsNum);
                   // return to original
                   layer.setStyle({
                       fillOpacity: .6
