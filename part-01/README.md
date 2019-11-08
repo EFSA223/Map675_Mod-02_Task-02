@@ -282,3 +282,63 @@ done writing file
 File all done. Great success!
 
 10. Add and commit and push all changes to remote repository
+
+>$ git status
+$ git add .
+$ git status
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        new file:   data/Earthcolors.json
+        new file:   data/Pastelcolors.json
+        new file:   data/listings-filtered.json
+        new file:   data/listings.json
+        new file:   data/neighbourh-counts.json
+        new file:   data/vividcolors.json
+        new file:   images/csv2geojson.JPG
+        new file:   project-files/cartocolors.json
+        new file:   scripts/bind-data.js
+        new file:   scripts/csv2geojson-filtered.js
+        new file:   scripts/csv2geojson.js
+        new file:   scripts/fs-async.js
+        new file:   scripts/fs-require.js
+```
+
+>$ git commit -m "Process data in Node, Create project scripts"
+
+>$ git push
+
+```
+[master d1d1c63] Process data in Node, Create project scripts
+ 14 files changed, 2186 insertions(+)
+ create mode 100644 part-01/data/Earthcolors.json
+ create mode 100644 part-01/data/Pastelcolors.json
+ create mode 100644 part-01/data/listings-filtered.json
+ create mode 100644 part-01/data/listings.json
+ create mode 100644 part-01/data/neighbourh-counts.json
+ create mode 100644 part-01/data/vividcolors.json
+ create mode 100644 part-01/images/csv2geojson.JPG
+ create mode 100644 part-01/project-files/cartocolors.json
+ create mode 100644 part-01/scripts/bind-data.js
+ create mode 100644 part-01/scripts/csv2geojson-filtered.js
+ create mode 100644 part-01/scripts/csv2geojson.js
+ create mode 100644 part-01/scripts/fs-async.js
+ create mode 100644 part-01/scripts/fs-require.js
+```
+
+```
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (21/21), 1.60 MiB | 1.13 MiB/s, done.
+Total 21 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 3 local objects.
+To https://github.com/EFSA223/Map675_Mod-02_Task-02.git
+   400ba93..d1d1c63  master -> master
+```
